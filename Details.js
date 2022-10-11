@@ -1,10 +1,31 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Button } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Button, Alert } from "react-native";
 import { TextInput } from "react-native-paper";
+import { removeData } from "./Storage";
 // import EmployeeList from "./EmployeeList";
+
+
+
 const Details = ({route,navigation}) => {
     const value = route.params.item;
     console.log(route);
+
+    // const deleteDetail = async() => {
+    //   const result = await AsyncStorage.getItem('item')
+    // }
+
+    // const displayDeleteAlert = () => {
+    //     Alert.alert('Are You  Sure', [{text : 'delete',
+    //   onPress: () => deleteDetail},
+    // {
+    //   text : 'delete',
+    //   onPress: () => console.log('NO ')
+    // }],
+    // {
+    //   cancelable : true,
+    // })
+    // }
     
     return (
     < ScrollView  style = {{backgroundColor : '#6fbdfc'}}>
@@ -58,7 +79,7 @@ const Details = ({route,navigation}) => {
           disabled = 'true'
           />
           <View style = {styles.btn}>
-          <Button title = 'Back' color = {'skyblue'}  onPress = {() => navigation.navigate('employeelist')}/>
+          <Button title = 'Back' color = {'skyblue'}  onPress = {() => removeData()}/>
           <Button title = 'Update' color = {'skyblue'} onPress = {() => navigation.navigate('update',{value : value, run : route.params.rerun})}/>
           </View>
     </ScrollView>
@@ -70,14 +91,15 @@ const styles = StyleSheet.create ({
         // backgroundColor : 'skyblue',
         flex : 1,
         color: "white",
-        marginTop: 32,
+        // marginTop: 32,
         // margin : 19,
         // alignSelf:'flex-start',
         flexDirection: 'row',
         fontSize: 32 ,
         // marginRight: 320 ,
-        padding: 13,
+        padding: 32,
         justifyContent: 'space-evenly',
+
 
     },
     n: {

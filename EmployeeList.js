@@ -51,8 +51,7 @@ const Rerun=()=>{
     return (
       <TouchableOpacity onPress={()=> navigation.navigate('detailsofEmployee',{item : item,rerun : Rerun})}>
         <View style={Styles.Usernamelist}>
-          <Text style={{color:"white", fontSize: 20}}>{item.name} </Text>
-          {/* <Text>{item.des}</Text> */}
+          <Text style={{color:"white", fontSize:26}}>{item.name}</Text>
           
         </View>
       </TouchableOpacity>
@@ -71,7 +70,8 @@ const Styles = StyleSheet.create({
     backgroundColor: '#42c8fc',
     padding: 20,
     marginTop: 16,
-    borderRadius: 6,
+    borderRadius: 18,
+    justifyContent: 'flex-start',
     flex :1 
     // fontVariant: '100',
     // fontSize: 100,

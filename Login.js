@@ -4,30 +4,39 @@ import { View, Text,
   StyleSheet, Image, ImageBackground
  } from "react-native";
  import { TextInput } from "react-native-paper";
+ import { logDataget, logDataset } from "./Storage";
+
+
 
 
 
 const Login = ({navigation}) => {
-  const usrne = () => {
-    if (
-      (username == 'Sudharsan' || username == 'Sithik') && ((pwd == '123456' || pwd == '54321')) 
-    ){
-      navigation.navigate('Landing',{inname : username })
-    }
-    else{
-      alert('Enter valid Username and Password');
-    }
-  }
   const [username, Setusername] = useState('');
-  const [pwd, Setpwd] = useState('');
+  const [password, Setpassword] = useState('');
+  const Login = async() => {
+  
+
+  const logData = {
+    Name : username,
+    pwd : password,
+  }
+  logDataset ('LogInData', logData);
+  let InfoOfUser = await logDataget('LogInData');
+  if (InfoOfUser.Name && InfoOfUser.pwd);
+  {navigation.navigate('Landing')}
+  }
+  
+
+
+  
   return(
     <View style = {styles.v}>
       <ImageBackground source={require("./assests/bg.jpg") } style = {styles.bgimg}>
       <Image style = {styles.img} source = {require("/home/divum/ProjectsReactNative/navigation/assests/user-circle.png")}/>
       <TextInput style = {styles.username} placeholder = 'Username' mode = 'outlined' placeholderTextColor={'white'} onChangeText = {Setusername} value = {username} />
-      <TextInput style = {styles.pwd} placeholder = "password" mode = 'outlined' placeholderTextColor={'white'} onChangeText = {Setpwd} value = {pwd} secureTextEntry/>
+      <TextInput style = {styles.pwd} placeholder = "password" mode = 'outlined' placeholderTextColor={'white'} onChangeText = {Setpassword} value = {password} secureTextEntry/>
       <TouchableOpacity 
-      onPress={()=>usrne()}>
+      onPress={()=>Login()}>
         <Text style = {styles.btn}>Log In </Text>
 
       </TouchableOpacity>

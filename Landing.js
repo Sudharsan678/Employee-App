@@ -1,14 +1,26 @@
 import React from "react";
+// import  {useState,useEffect} from "react";
 import { View,Text, 
     StyleSheet, TouchableOpacity,
      ImageBackground} from "react-native";
-import {usrne} from './Login';
-const Landing=({route,navigation})=>{
-    const value = route.params.inname;
+import {Login} from './Login';
+import { logDataget, logDataset } from "./Storage";
+import { useEffect, useState } from "react";
+const Landing=({navigation})=>{
+    const [userName, Setusername] = useState('');
+    useEffect(() => {
+        GetName();
+    })
+    // const [password, Setpassword] = useState('');
+    const GetName=async()=>{
+        let uname = await logDataget('logdata');
+        Setusername(uname.username)
+      }
+    
     return(
         <View style = {styles.v}>
             <ImageBackground  style = {styles.bg} source ={require('/home/divum/ProjectsReactNative/navigation/assests/bg_82.gif')}>
-            <Text style = {styles.welcome}>Welcome {value}</Text>
+            <Text style = {styles.welcome}>Welcome {userName}</Text>
 
             <TouchableOpacity onPress={()=>navigation.navigate("newprofile")} >
                 <Text style = {styles.create}> 

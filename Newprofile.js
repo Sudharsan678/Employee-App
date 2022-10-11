@@ -110,7 +110,7 @@ const Newprofile = ({navigation}) => {
           onChangeText={SetDOJ}></TextInput>
         <TouchableOpacity
           onPress={() => {
-            // navigation.navigate("submit")
+            // navigation.navigate("Landing")
             Submit()
             
           }} >

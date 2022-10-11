@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import {TextInput, RadioButton} from 'react-native-paper';
-import {getData, storeData} from './Storage';
+import {getData, storeData, removeData} from './Storage';
 
 
 const Edit = ({route,navigation}) => {
